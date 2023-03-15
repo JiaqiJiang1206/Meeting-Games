@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BlazePose</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+  </script><script crossorigin="anonymous" integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ==" src="https://lib.baomitu.com/socket.io/4.5.2/socket.io.js"></script>
+  <script type = "text/javascript" src = "p5.js"></script>
+  <script type = "text/javascript" src = "p5.sound.js"></script>
+</head>
+
+<!-- connect server -->
+<script type="text/javascript" src="../server.js" crossorigin="anonymous"></script>
+
+
+<body id="body">
+    
+
+    <!-- Camera video element -->
+    <video id="input_video" hidden="true"></video>
+
+    <!-- Main window -->
+    <div class="container">
+      <!-- Video output -->
+      <div id="output_wrapper_wrapper">
+        <div id="output_wrapper">
+            <canvas id="output_canvas" width=1280 height=720 hidden="true"></canvas>
+        </div>
+        <!-- <h1>gesture: <span id=gesture style="color:white">loading</span></h1>     -->
+      </div>   
+    </div>
+
+    
+
+    <!-- Pose estimation -->
+    <script src=pose.js></script>
+
+    <!-- Game Logic -->
+    <script src=app.js></script>
+
+    <!-- Splash screen -->
+    <div id=splash></div>
+</body>
+</html>
