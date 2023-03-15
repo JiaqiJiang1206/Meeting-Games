@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>frost</title>
+  <style>
+    * {
+      margin:0;
+      padding:0;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      /* 隐藏body窗口区域滚动条 */
+    }
+
+  </style>
+  <script type = "text/javascript" src = "p5.js"></script>
+  <script type = "text/javascript" src = "p5.sound.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <script type="text/javascript" src="../index.js"></script>
+  <script type="text/javascript" src="sketch.js">
+  </script><script crossorigin="anonymous" integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ==" src="https://lib.baomitu.com/socket.io/4.5.2/socket.io.js"></script>
+
+
+</head>
+
+<body  id="body">
+
+</div>
+</body>
+<script>
+  let frostConst = 0;
+  let con=document.getElementById("body");
+  let divList=[];
+  let divLeft = document.createElement("div");
+  // divLeft.setAttribute("style","background-image: url(\"left.png\");width: "+String(200)+"px; height:"+String(100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(0)+"px;top:"+String(0)+"px");
+  con.appendChild(divLeft);
+  let divRight = document.createElement("div");
+  // divRight.setAttribute("style","background-image: url(\"right.png\");width: "+String(200)+"px; height:"+String(100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(window.innerWidth-200)+"px;top:"+String(0)+"px");
+  con.appendChild(divRight);
+  setInterval(function (){
+    let div=document.createElement("div");
+    
+    //NOTES position:布局模式；left:距离屏幕左侧的位置，单位：px/%; top:距离屏幕顶部的距离;width:宽;height:高；
+    let k = Math.random();//生成一个0-1的随机数
+    let ran = Math.random()*4;//生成一个0-4的随机数
+    
+    if(frostConst < 300){
+      
+      //左侧霜
+      if(Math.ceil(ran) == 1){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String((Math.random()*window.innerWidth-500)/10)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String((Math.random()*window.innerWidth-500)/10)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //上侧霜
+      if(Math.ceil(ran) == 2){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(Math.random()*window.innerWidth-100)+"px;top:"+String((Math.random()*window.innerHeight-500)/10)+"px");
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(Math.random()*window.innerWidth-100)+"px;top:"+String((Math.random()*window.innerHeight-500)/10)+"px");
+      
+      }
+      //右侧霜
+      if(Math.ceil(ran) == 3){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String((Math.random()*window.innerWidth-500)/10)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String((Math.random()*window.innerWidth-500)/10)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      
+      }
+      //下侧霜
+      if(Math.ceil(ran) == 4){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String(Math.random()*window.innerWidth-100)+"px;bottom:"+String((Math.random()*window.innerHeight-500)/10)+"px");
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String(Math.random()*window.innerWidth-100)+"px;bottom:"+String((Math.random()*window.innerHeight-500)/10)+"px");
+      
+      }
+    }else if(frostConst < 600){
+      
+      if(divLeft != null){
+        con.removeChild(divLeft);
+        con.removeChild(divRight);
+        divLeft = null;
+        divRight = null;
+      }
+      // else if(frostConst == 301){
+      //   let divLeft = document.createElement("div");
+      //   divLeft.setAttribute("style","background-image: url(\"left.png\");width: "+String(200)+"px; height:"+String(100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(0)+"px;top:"+String(0)+"px");
+      //   con.appendChild(divLeft);
+      //   let divRight = document.createElement("div");
+      //   divRight.setAttribute("style","background-image: url(\"right.png\");width: "+String(200)+"px; height:"+String(100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(window.innerWidth-200)+"px;top:"+String(0)+"px");
+      //   con.appendChild(divRight);
+      // }
+      //左侧霜
+      if(Math.ceil(ran) == 1){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String((Math.random()*window.innerWidth-500)/5)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //上侧霜
+      if(Math.ceil(ran) == 2){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(Math.random()*window.innerWidth-100)+"px;top:"+String((Math.random()*window.innerHeight-500)/5)+"px");
+      }
+      //右侧霜
+      if(Math.ceil(ran) == 3){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String((Math.random()*window.innerWidth-500)/5)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //下侧霜
+      if(Math.ceil(ran) == 4){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String(Math.random()*window.innerWidth-100)+"px;bottom:"+String((Math.random()*window.innerHeight-500)/5)+"px");
+      }
+    }else if(frostConst < 900){
+      //左侧霜
+      if(Math.ceil(ran) == 1){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String((Math.random()*window.innerWidth-500)/2)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //上侧霜
+      if(Math.ceil(ran) == 2){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(Math.random()*window.innerWidth-100)+"px;top:"+String((Math.random()*window.innerHeight-500)/2)+"px");
+      }
+      //右侧霜
+      if(Math.ceil(ran) == 3){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String((Math.random()*window.innerWidth-500)/2)+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //下侧霜
+      if(Math.ceil(ran) == 4){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String(Math.random()*window.innerWidth-100)+"px;bottom:"+String((Math.random()*window.innerHeight-500)/2)+"px");
+      }
+    }else{
+      //左侧霜
+      if(Math.ceil(ran) == 1){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String((Math.random()*window.innerWidth-100))+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //上侧霜
+      if(Math.ceil(ran) == 2){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;left:"+String(Math.random()*window.innerWidth-100)+"px;top:"+String((Math.random()*window.innerHeight-100))+"px");
+      }
+      //右侧霜
+      if(Math.ceil(ran) == 3){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String((Math.random()*window.innerWidth-100))+"px;top:"+String(Math.random()*window.innerHeight-100)+"px");
+      }
+      //下侧霜
+      if(Math.ceil(ran) == 4){
+        div.setAttribute("style","background-image: url(\"111.png\");width: "+String(100*k+100)+"px; height:"+String(100*k+100)+ "px;background-size: 100% 100%;background-repeat: no-repeat;position: absolute;right:"+String(Math.random()*window.innerWidth-100)+"px;bottom:"+String((Math.random()*window.innerHeight-100))+"px");
+      }
+    }
+    
+    con.appendChild(div);
+    divList.push(div);
+    frostConst++;
+    console.log(frostConst);
+  },200)
+
+
+  animate();
+  //动画函数
+  function animate(time) {
+    render();
+  }
+
+  function  render(){
+    requestAnimationFrame(render);
+    
+    for(let i=0;i<divList.length;i++){
+      let divX =divList[i].getBoundingClientRect().left+100;
+      let divY =divList[i].getBoundingClientRect().top+100;
+
+      if(compare(width-noseX,noseY,divX, divY)){//|| compare(rightHandX,rightHandY,divX, divY) || compare(leftHandX,leftHandY,divX, divY)){
+        divList[i].remove();
+        
+        frostConst--;
+      }
+      
+    }
+    if(frostConst<300 &&  compare(rightHandX,rightHandY,100, 50) && compare(leftHandX,leftHandY,width-100, 50)){
+      
+      frostConst = 0;
+      for(let i=0;i<divList.length;i++){
+        
+        divList[i].remove();
+      }
+      console.log('sucess')
+    }
+  }
+
+
+  function compare(x1,y1,x2,y2){//距离小于50，则返回真
+    let length = Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    if(length < 150){
+      return true;
+    }
+  }
+</script>
+</html>
